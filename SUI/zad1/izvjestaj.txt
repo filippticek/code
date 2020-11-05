@@ -1,0 +1,123 @@
+1)
+gpg --import key.gpg
+
+gpg --verify secret.bin
+#"gpg: Good signature from "Internet Security (Key for lab assignments for Internet Security) <sui@fer.hr>""
+
+gpg --decrypt secret.bin
+
+"KOREAN apple XBOX jack nut ROPE EGG ZIP QUEEN jack queen BESTBUY USA MUSIC USA 3
+SKYPE nut usa WALMART walmart ZIP 6 EGG 3 5 jack yelp DRIP EGG ZIP yelp 9 LAPTOP
+egg 7 7 YELP coffee apple"
+
+Prva slova nam daju passphrase za dekripciju datoteke data.bin
+
+KaXjnREZQjqBUMU3SnuWwZ6E35jyDEZy9Le77Yca
+
+sha256sum -b data.mp4
+"3059724a4a32088244560552b09bb425db76f71c6143ed0af20ae62b7861ea96 *data.mp4"
+Sažetak odgovara dobivenom u zadatku
+
+2)
+file data
+"data: ISO Media, MP4 v2 [ISO 14496-14]"
+Ted Talk mp4 video
+
+3)
+gpg --gen-key #generiranje ključa
+gpg --sign ime.txt #potpisivanje ključa
+pgp --armor --export filip.pticek@fer.hr > pub_key.asc #izvezivanje javnog ključa u datoteku
+
+4)
+gpg --output mysecret.gpg --encrypt --recipient sui@fer.hr mysecret #enkripcija javnim ključem korisnika sui@fer.hr
+
+5)
+-aes-256-ecb
+real	0m0,339s
+user	0m0,013s
+sys	    0m0,093s
+
+-d -aes-256-ecb
+real	0m0,367s
+user	0m0,033s
+sys	    0m0,078s
+
+-des-ede3
+real	0m3,098s
+user	0m2,386s
+sys	    0m0,113s
+
+-d -des-ede3
+real	0m2,812s
+user	0m2,427s
+sys	    0m0,112s
+
+-aes-256-cbc
+real	0m0,474s
+user	0m0,139s
+sys	0m0,076s
+
+-d -aes-256-cbc
+real	0m0,359s
+user	0m0,049s
+sys	0m0,059s
+
+-des-ede3-cbc
+real	0m2,710s
+user	0m2,429s
+sys	0m0,097s
+
+-d -des-ede3-cbc
+real	0m2,599s
+user	0m2,312s
+sys	0m0,124s
+
+-aes-256-ctr
+real	0m0,353s
+user	0m0,029s
+sys	0m0,076s
+
+-d -aes-256-ctr
+real	0m0,355s
+user	0m0,045s
+sys	0m0,059s
+
+AES je brži algoritam te je također i sigurniji zbog veće duljine ključa.
+
+                  sign/s verify/s
+rsa  512 bits   16046.7 245708.0 Omjer: 0.06519
+rsa 1024 bits    5726.9  90079.6 Omjer: 0.63576
+rsa 2048 bits    1096.7  24016.4 Omjer: 0.04566
+rsa 3072 bits     225.6  12341.2 Omjer: 0.01828
+rsa 4096 bits     112.2   7231.7 Omjer: 0.01551
+rsa 7680 bits      13.0   2101.5 Omjer: 0.00619
+rsa 15360 bits      2.3    537.4 Omjer: 0.00428
+
+                                  sign/s verify/s
+ 160 bits ecdsa (secp160r1)  3252.9   3689.8 Omjer: 0.881592498238387
+ 192 bits ecdsa (nistp192)   2658.2   3041.2 Omjer: 0.874062869919769
+ 224 bits ecdsa (nistp224)   11604.5   5085.2 Omjer: 2.28201447337371
+ 256 bits ecdsa (nistp256)   28170.5   9230.9 Omjer: 3.05176093338678
+ 384 bits ecdsa (nistp384)     709.8    927.5 Omjer: 0.765283018867924
+ 521 bits ecdsa (nistp521)    2142.4   1088.6 Omjer: 1.96803233510932
+ 163 bits ecdsa (nistk163)    2979.7   1507.0 Omjer: 1.9772395487724
+ 233 bits ecdsa (nistk233)    2112.0   1107.1 Omjer: 1.90768674916448
+ 283 bits ecdsa (nistk283)    1251.9    620.4 Omjer: 2.0178916827853
+ 409 bits ecdsa (nistk409)     716.6    370.7 Omjer: 1.93309954140815
+ 571 bits ecdsa (nistk571)     333.7    173.3 Omjer: 1.92556260819388
+ 163 bits ecdsa (nistb163)    2899.3   1460.5 Omjer: 1.98514207463198
+ 233 bits ecdsa (nistb233)    2042.9   1045.0 Omjer: 1.95492822966507
+ 283 bits ecdsa (nistb283)    1218.9    621.2 Omjer: 1.96216999356085
+ 409 bits ecdsa (nistb409)     712.6    360.8 Omjer: 1.97505543237251
+ 571 bits ecdsa (nistb571)     320.0    162.1 Omjer: 1.97409006785935
+ 256 bits ecdsa (brainpoolP256r1)    1675.9   1896.6 Omjer: 0.883633871137826
+ 256 bits ecdsa (brainpoolP256t1)    1639.8   1951.0 Omjer: 0.840492055356227
+ 384 bits ecdsa (brainpoolP384r1)     701.1    887.1 Omjer: 0.790328035170781
+ 384 bits ecdsa (brainpoolP384t1)     711.5    925.7 Omjer: 0.768607540239819
+ 512 bits ecdsa (brainpoolP512r1)     394.7    527.6 Omjer: 0.748104624715694
+ 512 bits ecdsa (brainpoolP512t1)     403.8    559.3 Omjer: 0.721973895941355
+
+Potpisivanje je brže za svaki RSA i neke ECDSA ovisno o ključu i verziji.
+
+
+

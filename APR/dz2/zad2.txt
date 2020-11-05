@@ -1,0 +1,12 @@
+Procedura: simplex           | F1 | Xmin: [1.000731930609965, 1.0013668739293478]                                                              | f_count = 1024
+Procedura: simplex           | F2 | Xmin: [3.999742216385391, 1.9997919182359172]                                                              | f_count =  457
+Procedura: simplex           | F3 | Xmin: [1.0001794210198438, 2.000767879455319, 3.000932923283115, 4.001416406321649, 4.9992960316766375]    | f_count = 2476
+Procedura: simplex           | F4 | Xmin: [2.524361404762108e-06, -9.38629092342587e-07]                                                       | f_count =  922
+Procedura: hooke_jeeves      | F1 | Xmin: [1.0000015258789063, 1.0000038146972656]                                                             | f_count =  694
+Procedura: hooke_jeeves      | F2 | Xmin: [3.999999618530273, 2.000000762939453]                                                               | f_count =  305
+Procedura: hooke_jeeves      | F3 | Xmin: [1.0, 2.0, 3.0, 4.0, 5.0]                                                                            | f_count =  427
+Procedura: hooke_jeeves      | F4 | Xmin: [3.0999999999999996, 3.0999999999999996]                                                             | f_count =  172
+Procedura: coordinate_search | F1 | Xmin: [-1.4111898563998788, 1.9914569930226007]                                                            | f_count =   67
+Procedura: coordinate_search | F2 | Xmin: [4.000000167237814, 2.0000000671445815]                                                              | f_count =   84
+Procedura: coordinate_search | F3 | Xmin: [1.0, 2.0000002463637228, 3.000000122307835, 4.000000188205137, 5.000000178718368]                   | f_count =  212
+Procedura: coordinate_search | F4 | Xmin: [1.0999997434030016, 1.0999998592831604]                                                             | f_count =   77

@@ -1,0 +1,181 @@
+1)
+Virtualni stroj:
+	PING 192.168.56.1 (192.168.56.1) 56(84) bytes of data.
+	64 bytes from 192.168.56.1: icmp_seq=1 ttl=64 time=0.060 ms
+	Po TTL-u možemo zaključiti da se radi o nekoj vrsti UNIX sustava.
+
+
+mail.fer.hr
+	PING mail.fer.hr (161.53.72.233) 56(84) bytes of data.
+	64 bytes from mail.fer.hr (161.53.72.233): icmp_seq=1 ttl=115 time=2.49 ms
+	115 je najbliže 128 te možemo zaljučiti da se radi o Windows OS-u.
+
+161.53.19.1
+	PING 161.53.19.1 (161.53.19.1) 56(84) bytes of data.
+	64 bytes from 161.53.19.1: icmp_seq=1 ttl=243 time=7.71 ms
+	Prepostavka da se radi o derivatu UNIX-a.
+
+imunes.net
+	PING imunes.net (161.53.19.8) 56(84) bytes of data.
+	64 bytes from imunes.net (161.53.19.8): icmp_seq=1 ttl=51 time=16.8 ms
+	Također pretpostavljamo da se radi o derivatu UNIX-a.
+
+Naravno sve ovisi o tome jesu li se mjenjale default postavke.
+
+2)
+Skeniranje TCP portova:
+
+	sudo nmap -sT 192.168.56.1
+
+	Starting Nmap 7.60 ( https://nmap.org ) at 2019-12-09 13:35 CET
+	Nmap scan report for asus (192.168.56.1)
+	Host is up (0.00013s latency).
+	Not shown: 999 closed ports
+	PORT   STATE SERVICE
+	22/tcp open  ssh
+
+Skeniranje UDP portova:
+
+	sudo nmap -sU 192.168.56.1
+
+	Starting Nmap 7.60 ( https://nmap.org ) at 2019-12-09 13:34 CET
+	Nmap scan report for asus (192.168.56.1)
+	Host is up (0.0000050s latency).
+	Not shown: 997 closed ports
+	PORT     STATE         SERVICE
+	68/udp   open|filtered dhcpc
+	631/udp  open|filtered ipp
+	5353/udp open|filtered zeroconf
+
+Skeniranje TCP syn:
+
+	sudo nmap -sS 192.168.56.1
+
+	Starting Nmap 7.60 ( https://nmap.org ) at 2019-12-09 13:38 CET
+	Nmap scan report for asus (192.168.56.1)
+	Host is up (0.0000070s latency).
+	Not shown: 999 closed ports
+	PORT   STATE SERVICE
+	22/tcp open  ssh
+
+Detekcija OS-a
+
+	sudo nmap -O 192.168.56.1
+
+	Starting Nmap 7.60 ( https://nmap.org ) at 2019-12-09 13:37 CET
+	Nmap scan report for asus (192.168.56.1)
+	Host is up (0.0000060s latency).
+	Not shown: 999 closed ports
+	PORT   STATE SERVICE
+	22/tcp open  ssh
+	Device type: general purpose
+	Running: Linux 2.6.X
+	OS CPE: cpe:/o:linux:linux_kernel:2.6.32
+	OS details: Linux 2.6.32
+	Network Distance: 0 hops
+
+Detekcija verzija servisa:
+
+	sudo nmap -sV 192.168.56.1
+
+	Starting Nmap 7.60 ( https://nmap.org ) at 2019-12-09 13:39 CET
+	Nmap scan report for asus (192.168.56.1)
+	Host is up (0.0000090s latency).
+	Not shown: 999 closed ports
+	PORT   STATE SERVICE VERSION
+	22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+	Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Općeniti scan:
+
+	sudo nmap -A 192.168.56.1
+
+	Starting Nmap 7.60 ( https://nmap.org ) at 2019-12-09 13:39 CET
+	Nmap scan report for asus (192.168.56.1)
+	Host is up (0.0000040s latency).
+	Not shown: 999 closed ports
+	PORT   STATE SERVICE VERSION
+	22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+	| ssh-hostkey:
+	|   2048 32:2d:f9:2a:4a:76:9e:b2:6d:a4:36:78:36:b4:73:0b (RSA)
+	|   256 f2:a3:31:e6:53:30:98:b0:e8:53:d2:40:4f:d9:e4:1a (ECDSA)
+	|_  256 24:1d:8e:97:39:88:b8:a0:9a:90:4c:80:62:4c:a4:2f (EdDSA)
+	Device type: general purpose
+	Running: Linux 2.6.X
+	OS CPE: cpe:/o:linux:linux_kernel:2.6.32
+	OS details: Linux 2.6.32
+	Network Distance: 0 hops
+	Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+
+Nijedno skeniranje nije prouzročilo promjenu u ispisu virtualnog stroja.
+
+Skeniranje iznutra:
+
+	sudo nmap -sV localhost
+	[sudo] password for sui:
+
+	Starting Nmap 7.60 ( https://nmap.org ) at 2019-12-09 14:10 CET
+	Nmap scan report for localhost (127.0.0.1)
+	Host is up (0.0000090s latency).
+	Not shown: 999 closed ports
+	PORT   STATE SERVICE VERSION
+	22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+	Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+	Nema razlike u ispisu.
+
+3)
+FW.sh
+	Anti-spoofing pravila:
+	iptables -A INPUT -i eth0   -s 192.0.2.1   -m state --state NEW  -j DROP
+    iptables -A INPUT -i eth0   -s 192.168.1.0/24   -m state --state NEW  -j DROP
+    iptables -A INPUT -i eth0   -s 192.168.2.0/24   -m state --state NEW  -j DROP
+    iptables -A FORWARD -i eth0   -s 192.0.2.1   -m state --state NEW  -j DROP
+    iptables -A FORWARD -i eth0   -s 192.168.1.0/24   -m state --state NEW  -j DROP
+    iptables -A FORWARD -i eth0   -s 192.168.2.0/24   -m state --state NEW  -j DROP
+
+	SSH pristup firewall-u samo s int1 računala:
+    iptables -A INPUT -p tcp -s 192.168.1.21 --dport 22 -m state --state NEW -j ACCEPT
+
+	Firewall može koristiti DNS u internoj mreži:
+	iptables -A OUTPUT -p tcp -d 192.168.1.0/24 --dport 53 -m state --state NEW -j ACCEPT
+    iptables -A OUTPUT -p udp -d 192.168.1.0/24 --dport 53 -m state --state NEW -j ACCEPT
+
+	Mail-relay se prihvaća konekcije iz Interneta preko SMTP protokola:
+    iptables -A FORWARD -p tcp -d 192.168.2.10 --dport 25 -m state --state NEW -j ACCEPT
+
+	Mail-relay može pristupiti DNS i mail serverima na Internetu:
+	iptables -A FORWARD -p tcp -s 192.168.2.10 --dport 53 -m state --state NEW -j ACCEPT
+    iptables -A FORWARD -p tcp -s 192.168.2.10 --dport 25 -m state --state NEW -j ACCEPT
+
+	Web-serveru se može pristupiti iz Interneta na portovima 80 i 443:
+	iptables -A FORWARD -p tcp -d 192.168.2.11 --dport 80 -m state --state NEW -j ACCEPT
+    iptables -A FORWARD -p tcp -d 192.168.2.11 --dport 443 -m state --state NEW -j ACCEPT
+
+FW_int.sh
+	Anti-spoofing pravila:
+	iptables -A INPUT -i eth0   -s 192.168.2.2   -m state --state NEW  -j DROP
+    iptables -A INPUT -i eth0 -s 192.168.1.0/24 -m state --state NEW -j DROP
+	iptables -A FORWARD -i eth0   -s 192.168.2.2   -m state --state NEW  -j DROP
+    iptables -A FORWARD -i eth0 -s 192.168.1.0/24 -m state --state NEW -j DROP
+
+	SSH pristup firewall-u FW_int ima samo int1:
+    iptables -A INPUT -p tcp -s 192.168.1.21 --dport 22 -m state --state NEW -j ACCEPT
+
+	Internom mail sreveru ima pristup mail-relay:
+    iptables -A FORWARD -p tcp -s 192.168.2.10 -d 192.168.1.10 --dport 25 -m state --state NEW -j ACCEPT
+
+	Prupusti promet svim računalima s interne mreže u DMZ i Internet:
+    iptables -A FORWARD -s 192.168.1.0/24 -m state --state NEW -j ACCEPT
+
+4)
+	aircrack-ng SUI1_WEP.cap
+	KEY FOUND! [ 88:E2:F8:53:6E:99:27:35:BC:69:C8:4C:7E ]
+
+	aircarck-ng SUI2_WEP.cap
+    KEY FOUND! [ D5:71:92:38:04:EE:50:FA:E2:D2:0D:F7:DC ]
+
+    SUI1_WEP.cap sadrži promet u kojoj korisnik dohvaća datoteku SUI.ova preko protokola HTTP/1.1.
+
+	SUI2_WEP.cap sadrži promet u kojoj se gleda promet LAN mreže preko koje korisnici otkrivaju dostupne servise na mreži.

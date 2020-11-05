@@ -1,0 +1,2 @@
+Procedura: simplex | F6 | Iterations: 10000
+Probability of finding fmin: 0.10%

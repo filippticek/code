@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+.my-gray-bg {
+	background-color: lightgray;
+}
+.my-gray-bg2 {
+	background-color: #f2f2f2;
+}
+
+tr .inedit {
+	display: none
+}
+
+tr.inedit .inedit {
+	display: initial
+}
+
+tr.inedit .innoedit {
+	display: none
+}

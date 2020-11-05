@@ -1,0 +1,76 @@
+Prvi zadatak
+
+True
+
+Drugi zadatak
+LU dekompozicija
+Divison by zero
+
+LUP dekompozicija
+Rješenje sustava
+15.225 
+-0.5250000000000004 
+-4.824999999999999 
+
+Treći zadatak
+LU dekompozicija
+Division by zero
+
+LUP dekompozicija
+Rješenje sustava
+3.200000000000002 
+-5.200000000000006 
+2.7333333333333374 
+
+Četvrti zadatak
+LU dekompozicija
+Rješenje sustava
+1.000240445137024 
+1.9993176390310476 
+3.0010235414534288 
+
+LUP dekompozicija
+Rješenje sustava
+3750780.6430433393 
+-2499399031656.022 
+3749098547489.0327 
+
+Peti zadatak
+LU dekompozicija
+Division by zero
+
+LUP dekompozicija
+Rješenje sustava
+2.0 
+-0.33333333333333337 
+1.6666666666666665 
+
+Šesti zadatak
+LU dekompozicija
+Rješenje sustava
+1.0 
+2.0 
+1.0 
+
+LUP dekompozicija
+Rješenje sustava
+-218978104.20973426 
+3503649639.6988125 
+-875912407.6199585 
+
+Sedmi zadatak
+Matrix is singular
+
+Osmi zadatak
+Inverz:
+-0.0 -3.0 -2.0 
+1.0 -4.0 -2.0 
+-3.0 4.0 1.0 
+
+Deveti zadatak
+Determinanta:
+1.0
+
+Deseti zadatak
+Determinanta:
+48.0

@@ -1,0 +1,73 @@
+1)
+Skripta se izvrsava svakih 5 minuta.
+Skripta za dodavanje korisnika u sudo grupu:
+#!/bin/bash
+
+/usr/sbin/useradd sui sudo
+
+Linija koja omogucuje korisnicima grupe sudo da izvrsavaju naredbe s pravima root korisnika:
+%sudo   ALL=(ALL:ALL) ALL
+
+2)
+cat /etc/passwd
+sui:x:1000:1000:sui,,,:/home/sui:/bin/bash
+ime_korisnika:dodjeljen_password:user_id:group_id:opisno_ime:home_direktorij:ljuska_koju_koristi
+
+cat /etc/shadow
+sui:$6$fQpJALep$bOvFxnl5DepbvFGfYrMu.kGiEDDE1gqgjNQ9nAHAXXBMD0fqScLgP7knv9EgEp8yQoFzpXlTtpCFoGBUG2Q4F0:18148:0:99999:7:::
+korisnik:$6$QYgusWiC$CqkZ3S0Zc5DIIUd17dlSODfQU5UUtVQbLh/6wAj97wfej3tn.m43l9HpRsNuUTIXiGbf1p1Z5fMCa2cgH33pB0:18202:0:99999:7:::
+ime_korisnika:$broj_algoritma$salt$hash_passworda:dani_od_promjene_passworda:minimalni_broj_dana_za_promjenu_passworda
+:maksimalan_broj_dana_valjanosti_passworda:broj_dana_do_upozorenja_za_promjenu_passworda:broj_dana_od_istjecanja_passworda_se_korsnik_onesposobi:unix_datum_kad_se_korisnik_onesposobi
+
+Hashevi korisnika sui i korisnik nisu jednaki jer imaju razliciti salt iako im je lozinka jednaka.
+Koristi se SHA_512 algoritam.
+
+mkpasswd -m sha-512 -S "fQpJALep"
+
+3)
+john pass_MD5
+
+real    0m6.980s
+user    0m6.005s
+sys     0m0.039s
+99 password hashes cracked, 1 left
+
+john pass_SHA-256_weak
+
+real    0m19.309s
+user    0m18.264s
+sys     0m0.047s
+99 password hashes cracked, 1 left
+
+john pass_SHA-256
+
+real    4m24.787s
+user    4m21.878s
+sys     0m0.268s
+99 password hashes cracked, 1 left
+
+john pass_SHA-512_weak
+
+real    0m30.204s
+user    0m28.800s
+sys     0m0.028s
+99 password hashes cracked, 1 left
+
+
+john pass_SHA_512
+
+real    3m31.781s
+user    3m28.811s
+sys     0m0.170s
+99 password hashes cracked, 1 left
+
+John The Ripper koristi napad rjecnikom. Razlika u datoteka oznacenih s weak jer sto imaju salt koji je jednak svim passwordima.
+
+4)
+malware1
+Malware iskoristava propust u apache serveru te preko njega dobiva root pristup racunalu.
+
+malware2
+Crv koji se iskoristava za DOS napade.
+
+

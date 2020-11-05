@@ -1,0 +1,13 @@
+Prvi zadatak:
+	Šifra:	strcmp_pomocu_dword
+	Postupak: Primjetio sad da se izvršava naredba cmp između stringa kojeg smo upisali i neke
+	vrijednosti. Kad sam te
+	vrijednosti pretvorio u ASCII vrijednosti i upisao ih kao šifru dobio sam dobar password.
+
+Drugi zadatak:
+	Program dobiva jmbag koji kada izvrši provjeru duljine iterira broj po broj, množi ascii 	
+	vrijednost znamenke sa 0x460b, te napravi lijevi pomak od broja iteracije and-anog sa 7, i dodaje 
+	tu vrijednost varijabli koju opet uvećava svaku iteraciju. Na kraju tu varijablu usporedi sa 	
+	šifrom koja je formata unsigned int.
+
+

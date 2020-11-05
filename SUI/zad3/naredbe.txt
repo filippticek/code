@@ -1,0 +1,14 @@
+ip addr
+ping 192.168.56.1
+ping mail.fer.hr
+ping 161.53.19.1
+ping imunes.net
+sudo nmap -sT 192.168.56.1
+sudo nmap -sU 192.168.56.1
+sudo nmap -sS 192.168.56.1
+sudo nmap -O 192.168.56.1
+sudo nmap -sV 192.168.56.1
+sudo nmap -A 192.168.56.1
+sudo nmap -sV localhost
+aircrack-ng SUI1_WEP.cap
+aircarck-ng SUI2_WEP.cap

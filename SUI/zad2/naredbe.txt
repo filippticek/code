@@ -1,0 +1,23 @@
+cat /usr/local/bin/backup
+cat /tmp/backup.log
+which useradd
+nano /tmp/smth
+cat /etc/sudoers
+sudo adduser korisnik
+su korisnik
+exit
+cat /etc/passwd
+sudo cat /etc/shadow
+mkpasswd -m sha-512 -S "fQpJALep"
+time john pass_MD5
+john --show pass_MD5
+time john pass_SHA-256_weak
+time john --show pass_SHA-256_weak
+time john pass_SHA-256
+time john --show pass_SHA-256
+time john pass_SHA-512_weak
+time john --show pass_SHA-512_weak
+time john pass_SHA-512
+time john --show pass_SHA-512
+strings malware1 | less
+strings malware2 | less

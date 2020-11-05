@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="css/main.css" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Courses</title>
+</head>
+<body>
+<div class="container">
+	<div class="row"> 
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+		
+		<h3>Courses</h3>
+		<button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#newCourseModal">New Course</button>
+		<p>&nbsp;</p>
+		<table class="table table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody id="courses_table">
+			</tbody>
+		</table>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+</div>
+
+<div class="modal fade" id="newCourseModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">New Course</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<form>
+		  <div class="form-group">
+		    <label for="formCourseName">Name</label>
+		    <input type="text" class="form-control" id="formCourseName" placeholder="Course name">
+		  </div>
+		  <div class="form-group">
+		    <label for="formCourseDescription">Description</label>
+		    <input type="text" class="form-control" id="formCourseDescription" placeholder="Course description">
+		  </div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button id="saveNewCourseBtn" type="button" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
