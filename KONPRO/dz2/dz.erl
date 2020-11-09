@@ -62,7 +62,7 @@ worker() ->
     end.
 
 %Sends the number to a worker based on the time the workers were busy
-%Resets the counter if it comes to a intiger overflow
+%Resets the counter if it comes to a integer overflow
 round_robin([T0, T1], X) when (T0 < 0) or (T1 < 0) ->
     round_robin([0,0], X);
 round_robin([T0, T1], X) when T0 =< T1 ->
@@ -79,7 +79,7 @@ scheduler_init() ->
     global:register_name(scheduler, self()),
     scheduler([0,0]).
 
-%Function waits for a number or commands
+%Function waits for a number or command
 scheduler(T) ->
     W1 = get_pid(global:whereis_name(worker_1), worker_1@asus, worker_1),
     W2 = get_pid(global:whereis_name(worker_2), worker_2@asus, worker_2),
