@@ -1,0 +1,4 @@
+Procedura: gradient_desc     | F1 | Xmin: [1.7174903985413081, 2.951814098881205]       | f_count =   3062 | f_count_gradient =    103 | f_count_hesse =      0 
+Procedura: gradient_desc     | F2 | Xmin: [3.9999996488944825, 2.000000050338445]       | f_count =    906 | f_count_gradient =     28 | f_count_hesse =      0 
+Procedura: newton_raphson    | F1 | Xmin: [0.9999999365228437, 0.999999812815447]       | f_count =   4256 | f_count_gradient =    139 | f_count_hesse =    138 
+Procedura: newton_raphson    | F2 | Xmin: [3.9999996244350715, 1.9999999667217225]      | f_count =   1521 | f_count_gradient =     49 | f_count_hesse =     48 

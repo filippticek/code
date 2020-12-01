@@ -1,0 +1,2 @@
+Inner point found [1.0, 1.0]
+Mixed transformation | X0 = [5, 5]     | F4 | Xmin: [4.0, 0.0]                                    | f_count=    248

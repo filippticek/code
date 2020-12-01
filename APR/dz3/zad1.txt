@@ -1,0 +1,2 @@
+Gradient descend with golden cut    | Xmin: [1.9999999999994553, -2.9999999999991833]     | grad_count =      3
+Gradient descend withouth golden cut| Xmin: [0.0, 0.0]                                    | grad_count =    101

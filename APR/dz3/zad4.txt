@@ -1,0 +1,4 @@
+Mixed transformation | X0 = [-1.9, 2]  | F1 | Xmin: [0.008842086791992276, 0.0055084228515625]    | f_count=    805
+Mixed transformation | X0 = [0.1, 0.3] | F2 | Xmin: [0.6, -0.19999999999999996]                   | f_count=    235
+Mixed transformation | X0 = [2, 2]     | F1 | Xmin: [2.000001907348633, 2.0]                      | f_count=   1406
+Mixed transformation | X0 = [2, 2]     | F2 | Xmin: [2.5, 1.5]                                    | f_count=    235
