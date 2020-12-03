@@ -88,7 +88,6 @@ def unimodal_interval(h, x0, f_id, lamb, grad):
 
     return l, r
 
-
 def simplex(x0, f_id, eps=1e-6, alfa=1, beta=0.5, gamma=2, sigma=0.5, shift=1, print_step=False):
     x = list([x0])
     f = f_id
@@ -227,7 +226,7 @@ def explore(xp, dx, f_id):
 
     return x
 
-def gradient_desc(x0, f_id, eps=1e-6, golden=False):
+def gradient_desc(x0, f_id, eps=1e-6, golden=True):
     f = f_id
     x = list(x0)
     grad = f.grad(x)
@@ -254,7 +253,7 @@ def gradient_desc(x0, f_id, eps=1e-6, golden=False):
 
     return x
 
-def newton_raphson(x0, f_id, eps=1e-6, golden=False):
+def newton_raphson(x0, f_id, eps=1e-6, golden=True):
     f = f_id
     x = list(x0)
     grad = f.grad(x)
@@ -412,7 +411,6 @@ def mixed_transform(x0, f_id, eps=1e-6, t=1, implicit_neq=[], implicit_eq=[]):
 
     return x
 
-
 class Find_inner_point:
     implicit_neq = []
     t = 1
@@ -427,7 +425,6 @@ class Find_inner_point:
             if neq.test(x) < 0:
                 gx = gx - neq.test(x) 
         return gx
-
 
 class Mixed_transform:
     f = 0
@@ -450,7 +447,7 @@ class Mixed_transform:
         for neq in self.implicit_neq:
             neq_test = neq.test(x)
             if neq_test > 0:
-                gx += math.log(neq_test)
+                gx -= math.log(neq_test)
             elif neq_test == 0:
                 gx -= maxsize
             else:
@@ -463,7 +460,7 @@ class Mixed_transform:
             hx += eq.test(x) ** 2
         hx = hx * self.t
 
-        return fx - gx + hx
+        return fx + gx + hx
 
 class Function:
     identity = 0
@@ -695,20 +692,21 @@ def fifth():
     print("Mixed transformation | X0 = %-10s | F4 | Xmin: %-45s | f_count= %6d" % 
             (str(x0), str(mixed_transform(x0, f_id, t=1, implicit_neq=implicit_neq, implicit_eq=implicit_eq)), f_id.get_count()))
 
-#while True:
-#    print("Choose between assignment 1-5 or 0 for exit.")
-#    zad = stdin.readline().strip()
-zad = argv[1] 
+while True:
+    print("Choose between assignment 1-5 or 0 for exit.")
+    zad = stdin.readline().strip()
 
-if zad == '1':
-    first()
-elif zad == '2':
-    second()
-elif zad == '3':
-    third()
-elif zad == '4':
-    fourth()
-elif zad == '5':
-    fifth()
-else:
-    exit(0)
+    if zad == '1':
+        first()
+    elif zad == '2':
+        second()
+    elif zad == '3':
+        third()
+    elif zad == '4':
+        fourth()
+    elif zad == '5':
+        fifth()
+    else:
+        exit(0)
+
+
