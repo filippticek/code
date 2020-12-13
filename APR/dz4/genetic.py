@@ -178,7 +178,7 @@ def first():
         for binary in [False, True]:
             print("%s representation" % ("Binary" if binary else "Float")) 
             for j in range(20):
-                x_min, f = genetic_algorithm(f_id[i], 10, 3, 0.1, 10000, binary=binary, explicit=explicit, p=3, print_step=False)
+                x_min, f = genetic_algorithm(f_id[i], 100, 3, 0.1, 10000, binary=binary, explicit=explicit, p=3, print_step=False)
                 if binary:
                     data[1].append(f)
                     print("Function: %d | Xmin: %-130s | F(X)=%10.6f | f_count = %4d"  
@@ -208,7 +208,7 @@ def second():
                 for binary in [False, True]:
                     print("%s representation" % ("Binary" if binary else "Float")) 
                     f = Function(fi,d)
-                    x_min, fx = genetic_algorithm(f, 10, 3, 0.1, 10000, binary=binary, explicit=explicit, p=3, print_step=False)
+                    x_min, fx = genetic_algorithm(f, 100, 3, 0.1, 10000, binary=binary, explicit=explicit, p=3, print_step=False)
                     data[i].append(fx)
                     if binary:
                         print("Function: %d | Xmin: %-130s | F(X)=%10.6f | f_count = %4d"  
@@ -237,7 +237,7 @@ def third():
                 print("%s representation" % ("Binary" if binary else "Float")) 
                 for j in range(5):
                     f = Function(fi,d)
-                    x_min, fx = genetic_algorithm(f, 10, 3, 0.1, 100000, binary=binary, explicit=explicit, p=3, print_step=False)
+                    x_min, fx = genetic_algorithm(f, 100, 3, 0.1, 100000, binary=binary, explicit=explicit, p=4, print_step=False)
                     if binary:
                         data[1].append(fx)
                         print("Function: %d | Xmin: %-130s | F(X)=%10.6f | f_count = %4d"  
@@ -254,10 +254,111 @@ def third():
             plt.show() 
 
 def fourth():
-    return 4
+    f = Function(6,4)
+    populations = [30, 50, 100, 200]
+    mutations = [0.1, 0.3, 0.6, 0.9]
+    max_iterations = [100, 1000, 10000, 100000]
+    explicit = [-50, 150]
+
+    data = [[],[]]
+    for max_iteration in max_iterations:
+        print("Max iterations: %d" % (max_iteration))
+        for j in range(10):
+            for binary in [False, True]:
+                x_min, fx = genetic_algorithm(f, 100, 3, 0.1, max_iteration, binary=binary, explicit=explicit, p=4, print_step=False)
+                if binary:
+                    print("Function: %d | Xmin: %-130s | F(X)=%10.6f | f_count = %4d"  
+                        % (6, str(bin_to_float(x_min, len(x_min[0]), explicit[0], explicit[1])), fx, f.get_count()))
+                else:
+                    print("Function: %d | Xmin: %-130s | F(X)=%10.6f | f_count = %4d"  
+                        % (6, str(x_min), fx, f.get_count()))
+                data[0].append(max_iteration)
+                data[1].append(fx)
+                f.reduce_count(f.get_count())
+
+    max_index = 0
+    for i in range(len(data[0])):
+        if data[1][i] < data[1][max_index]:
+            max_index = i
+
+    iterations = data[0][max_index]
+    print("Best max iterations %d" % (iterations))
+
+    data = [[],[]]
+    for population in populations:
+        print("Population: %d" % (population))
+        for j in range(10):
+            for binary in [False, True]:
+                x_min, fx = genetic_algorithm(f, population, 3, 0.1, iterations, binary=binary, explicit=explicit, p=4, print_step=False)
+                if binary:
+                    print("Function: %d | Xmin: %-130s | F(X)=%10.6f | f_count = %4d"  
+                        % (6, str(bin_to_float(x_min, len(x_min[0]), explicit[0], explicit[1])), fx, f.get_count()))
+                else:
+                    print("Function: %d | Xmin: %-130s | F(X)=%10.6f | f_count = %4d"  
+                        % (6, str(x_min), fx, f.get_count()))
+                data[0].append(population)
+                data[1].append(fx)
+                f.reduce_count(f.get_count())
+
+    max_index = 0
+    for i in range(len(data[0])):
+        if data[1][i] < data[1][max_index]:
+            max_index = i
+
+    population = data[0][max_index]
+    print("Best population size: %d" % (population))
+    data = [[],[], [], []]
+
+    i = 0
+    for mutation in mutations:
+        print("Mutation probability: %f" % (mutation))
+        for j in range(10):
+            for binary in [False, True]:
+                x_min, fx = genetic_algorithm(f, population, 3, mutation, iterations, binary=binary, explicit=explicit, p=4, print_step=False)
+                if binary:
+                    print("Function: %d | Xmin: %-130s | F(X)=%10.6f | f_count = %4d"  
+                        % (6, str(bin_to_float(x_min, len(x_min[0]), explicit[0], explicit[1])), fx, f.get_count()))
+                else:
+                    print("Function: %d | Xmin: %-130s | F(X)=%10.6f | f_count = %4d"  
+                        % (6, str(x_min), fx, f.get_count()))
+                data[i].append(fx)
+                f.reduce_count(f.get_count())
+        i += 1
+
+
+    fig1, ax1 = plt.subplots()
+    ax1.set_title("Max iterations %d, population size: %d" % (iterations, population))
+    ax1.boxplot(data)
+    plt.show() 
+
+
 
 def fifth():
-    return 5
+    f = Function(6, 4)
+    tournament_pool = [3, 6, 9, 15, 20, 30]
+    explicit = [-50, 150]
+    data = [[], [], [], [], [], []]
+    i = 0
+    for pool in tournament_pool:
+        print("Pool size: %d" % (pool))
+        for j in range(10):
+            for binary in [False, True]:
+                x_min, fx = genetic_algorithm(f, 100, pool, 0.1, 100000, binary=binary, explicit=explicit, p=4, print_step=False)
+                data[i].append(fx)
+                if binary:
+                    print("Function: %d | Xmin: %-130s | F(X)=%10.6f | f_count = %4d"  
+                        % (6, str(bin_to_float(x_min, len(x_min[0]), explicit[0], explicit[1])), fx, f.get_count()))
+                else:
+                    print("Function: %d | Xmin: %-130s | F(X)=%10.6f | f_count = %4d"  
+                        % (6, str(x_min), fx, f.get_count()))
+                f.reduce_count(f.get_count())
+        i += 1
+
+    fig1, ax1 = plt.subplots()
+    ax1.set_title("Function %d" % (6))
+    ax1.boxplot(data)
+    plt.show() 
+
 
 while True:
     print("Choose between assignment 1-5 or 0 for exit.")
