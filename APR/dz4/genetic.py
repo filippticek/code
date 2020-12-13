@@ -342,8 +342,8 @@ def fourth():
     plt.ylabel("F(X)")
     plt.xlabel("Mutation probability")
     plt.boxplot(data, labels=mutations)
-    plt.savefig("task4.png")
-    #plt.show() 
+    #plt.savefig("task4.png")
+    plt.show() 
 
 
 
@@ -374,24 +374,24 @@ def fifth():
     plt.ylabel("F(X)")
     plt.xlabel("Tournament pool size")
     plt.boxplot(data, labels=tournament_pool)
-    plt.savefig("task5.png")
-    #plt.show() 
+    #plt.savefig("task5.png")
+    plt.show() 
 
 
-#while True:
-#    print("Choose between assignment 1-5 or 0 for exit.")
-#    zad = stdin.readline().strip()
-zad = argv[1].strip()
+while True:
+    print("Choose between assignment 1-5 or 0 for exit.")
+    zad = stdin.readline().strip()
+#zad = argv[1].strip()
 
-if zad == '1':
-    first()
-elif zad == '2':
-    second()
-elif zad == '3':
-    third()
-elif zad == '4':
-    fourth()
-elif zad == '5':
-    fifth()
-else:
-    exit(0)
+    if zad == '1':
+        first()
+    elif zad == '2':
+        second()
+    elif zad == '3':
+        third()
+    elif zad == '4':
+        fourth()
+    elif zad == '5':
+        fifth()
+    else:
+        exit(0)
