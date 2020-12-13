@@ -191,8 +191,12 @@ def first():
                 f_id[i].reduce_count(f_id[i].get_count())
                 #zad = stdin.readline().strip()
         fig1, ax1 = plt.subplots()
-        ax1.set_title("Function %d" % (f_id[i].get_id()))
-        ax1.boxplot(data)
+        plt.suptitle("Function %d" % (f_id[i].get_id()))
+        x_names = ["Float", "Binary"]
+        plt.boxplot(data, labels=x_names)
+        plt.ylabel("F(X)")
+        plt.xlabel("Data representation")
+        #plt.savefig("task1_function%d.png" % (f_id[i].get_id()))
         plt.show() 
 
 def second():
@@ -204,9 +208,9 @@ def second():
         i = 0
         for d in dimension:
             
-            for j in range(10):
-                for binary in [False, True]:
-                    print("%s representation" % ("Binary" if binary else "Float")) 
+            for binary in [False, True]:
+                print("%s representation" % ("Binary" if binary else "Float")) 
+                for j in range(10):
                     f = Function(fi,d)
                     x_min, fx = genetic_algorithm(f, 100, 3, 0.1, 10000, binary=binary, explicit=explicit, p=3, print_step=False)
                     data[i].append(fx)
@@ -221,7 +225,10 @@ def second():
 
         fig1, ax1 = plt.subplots()
         ax1.set_title("Function %d" % (fi))
-        ax1.boxplot(data)
+        ax1.boxplot(data, labels=dimension)
+        plt.ylabel("F(X)")
+        plt.xlabel("Dimensions")
+        #plt.savefig("task2_function%d.png" % (fi))
         plt.show() 
 
 
@@ -249,8 +256,12 @@ def third():
                     #zad = stdin.readline().strip()
 
             fig1, ax1 = plt.subplots()
+            x_names = ["Float", "Binary"]
             ax1.set_title("Function %d, Dimension %d" % (fi, d))
-            ax1.boxplot(data)
+            plt.boxplot(data, labels=x_names)
+            plt.xlabel("Data representation")
+            plt.ylabel("F(X)")
+            #plt.savefig("task3_function%d_dimension%d.png" % (fi, d))
             plt.show() 
 
 def fourth():
@@ -327,9 +338,12 @@ def fourth():
 
 
     fig1, ax1 = plt.subplots()
-    ax1.set_title("Max iterations %d, population size: %d" % (iterations, population))
-    ax1.boxplot(data)
-    plt.show() 
+    ax1.set_title("Function 6, population %d, iterations %d" % (population, iterations))
+    plt.ylabel("F(X)")
+    plt.xlabel("Mutation probability")
+    plt.boxplot(data, labels=mutations)
+    plt.savefig("task4.png")
+    #plt.show() 
 
 
 
@@ -341,8 +355,9 @@ def fifth():
     i = 0
     for pool in tournament_pool:
         print("Pool size: %d" % (pool))
-        for j in range(10):
-            for binary in [False, True]:
+        for binary in [False, True]:
+            print("%s representation" % ("Binary" if binary else "Float")) 
+            for j in range(10):
                 x_min, fx = genetic_algorithm(f, 100, pool, 0.1, 100000, binary=binary, explicit=explicit, p=4, print_step=False)
                 data[i].append(fx)
                 if binary:
@@ -356,23 +371,27 @@ def fifth():
 
     fig1, ax1 = plt.subplots()
     ax1.set_title("Function %d" % (6))
-    ax1.boxplot(data)
-    plt.show() 
+    plt.ylabel("F(X)")
+    plt.xlabel("Tournament pool size")
+    plt.boxplot(data, labels=tournament_pool)
+    plt.savefig("task5.png")
+    #plt.show() 
 
 
-while True:
-    print("Choose between assignment 1-5 or 0 for exit.")
-    zad = stdin.readline().strip()
-    
-    if zad == '1':
-        first()
-    elif zad == '2':
-        second()
-    elif zad == '3':
-        third()
-    elif zad == '4':
-        fourth()
-    elif zad == '5':
-        fifth()
-    else:
-        exit(0)
+#while True:
+#    print("Choose between assignment 1-5 or 0 for exit.")
+#    zad = stdin.readline().strip()
+zad = argv[1].strip()
+
+if zad == '1':
+    first()
+elif zad == '2':
+    second()
+elif zad == '3':
+    third()
+elif zad == '4':
+    fourth()
+elif zad == '5':
+    fifth()
+else:
+    exit(0)
