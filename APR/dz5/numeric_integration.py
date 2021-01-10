@@ -301,18 +301,18 @@ def fourth():
     plt.show()
 
 
-#while True:
-    #print("Choose between assignment 1-5 or 0 for exit.")
-    #zad = stdin.readline().strip()
-zad = argv[1].strip()
+while True:
+    print("Choose between assignment 1-5 or 0 for exit.")
+    zad = stdin.readline().strip()
+#zad = argv[1].strip()
 
-if zad == '1':
-    first()
-elif zad == '2':
-    second()
-elif zad == '3':
-    third()
-elif zad == '4':
-    fourth()
-else:
-    exit(0)
+    if zad == '1':
+        first()
+    elif zad == '2':
+        second()
+    elif zad == '3':
+        third()
+    elif zad == '4':
+        fourth()
+    else:
+        exit(0)
