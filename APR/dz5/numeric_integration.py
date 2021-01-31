@@ -26,7 +26,7 @@ def runge_kutta(A, x, T, tmax, B=None, r=None, print_step=0):
         x1.append(xk1[0][0])
         x2.append(xk1[1][0])
         t += T
-        if print_step % i == 0: 
+        if i % print_step == 0: 
             print("xk+1:" + str(xk1[0][0]) + ", " + str(xk1[1][0]))
 
     return x1, x2, t_array
@@ -50,7 +50,7 @@ def trapeze(A, x, T, tmax, B=None, r=None, print_step=0):
         x1.append(xk1[0][0])
         x2.append(xk1[1][0])
         t += T
-        if print_step % i == 0: 
+        if i % print_step == 0: 
             print("xk+1:" + str(xk1[0][0]) + ", " + str(xk1[1][0]))
 
     return x1, x2, t_array
@@ -74,7 +74,7 @@ def euler(A, x, T, tmax, B=None, r=None, print_step=0):
         x1.append(xk1[0][0])
         x2.append(xk1[1][0])
         t += T
-        if print_step % i == 0: 
+        if i % print_step == 0: 
             print("xk+1:" + str(xk1[0][0]) + ", " + str(xk1[1][0]))
 
     return x1, x2, t_array
@@ -98,7 +98,7 @@ def reverse_euler(A, x, T, tmax, B=None, r=None, print_step=0):
         x1.append(xk1[0][0])
         x2.append(xk1[1][0])
         t += T
-        if print_step % i == 0: 
+        if i % print_step == 0: 
             print("xk+1:" + str(xk1[0][0]) + ", " + str(xk1[1][0]))
 
     return x1, x2, t_array
@@ -130,7 +130,7 @@ def pece(A, x, T, tmax, B=None, r=None, print_step=0):
         x1.append(xk1[0][0])
         x2.append(xk1[1][0])
         t += T
-        if print_step % i == 0: 
+        if i % print_step == 0: 
             print("xk+1:" + str(xk1[0][0]) + ", " + str(xk1[1][0]))
 
     return x1, x2, t_array
@@ -165,7 +165,7 @@ def pece2(A, x, T, tmax, B=None, r=None, print_step=0):
         x1.append(xk1[0][0])
         x2.append(xk1[1][0])
         t += T
-        if print_step % i == 0: 
+        if i % print_step == 0: 
             print("xk+1:" + str(xk1[0][0]) + ", " + str(xk1[1][0]))
 
     return x1, x2, t_array
@@ -198,7 +198,7 @@ def first():
     i = 0
     for fi in f:
         print(fi.__name__)
-        x1, x2, t = fi(A,x,T,tmax, r=r,print_step=0)
+        x1, x2, t = fi(A,x,T,tmax, r=r,print_step=tmax/T)
         ax[i].plot(t, x1)
         ax[i].plot(t, x2)
         ax[i].set_title(fi.__name__)
@@ -237,7 +237,7 @@ def second():
 
     for fi in f:
         print(fi.__name__)
-        x1, x2, t = fi(A,x,T,tmax, r=r,print_step=10)
+        x1, x2, t = fi(A,x,T,tmax, r=r,print_step=10000)
         ax[i].plot(t, x1)
         ax[i].plot(t, x2)
         ax[i].set_title(fi.__name__)
@@ -263,7 +263,7 @@ def third():
 
     for fi in f:
         print(fi.__name__)
-        x1, x2, t = fi(A,x,T,tmax, B=B, r=r,print_step=10)
+        x1, x2, t = fi(A,x,T,tmax, B=B, r=r,print_step=tmax/T)
         ax[i].plot(t, x1)
         ax[i].plot(t, x2)
         ax[i].set_title(fi.__name__)
@@ -273,8 +273,6 @@ def third():
 
     plt.show()
     
-   
-
 def fourth():
     A = Matrica([[1,-5],[1,-7]])
     B = Matrica([[5,0],[0,3]])
@@ -290,7 +288,7 @@ def fourth():
 
     for fi in f:
         print(fi.__name__) 
-        x1, x2, t = fi(A,x,T,tmax,B=B,r=None,print_step=10)
+        x1, x2, t = fi(A,x,T,tmax,B=B,r=None,print_step=tmax/T)
         ax[i].plot(t, x1)
         ax[i].plot(t, x2)
         ax[i].set_title(fi.__name__)
